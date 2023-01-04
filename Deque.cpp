@@ -19,6 +19,7 @@ Deque & Deque::operator=(const Deque &rD)
 
     freeDeque();
     copyDeque(rD);
+    return *this;
 }
 
 int Deque::peekHead() const
@@ -38,7 +39,7 @@ int Deque::peek(bool head) const
     return pTail->data;
 }
 
-void Deque::insertHead(int &rK)
+void Deque::insertHead(const int &rK)
 {
     Node *pNew = new Node;
     pNew->data = rK;
@@ -47,7 +48,7 @@ void Deque::insertHead(int &rK)
     pHead = pNew;
 }
 
-void Deque::insertTail(int &rK)
+void Deque::insertTail(const int &rK)
 {
     Node *pNew = new Node;
     pNew->data = rK;
@@ -56,12 +57,12 @@ void Deque::insertTail(int &rK)
     pTail = pNew;
 }
 
-void Deque::insert(int &k, bool head)
+void Deque::insert(const int &k, bool head)
 {
     Node *pNew= new Node;
     pNew->data = k;
 
-    if (pHead = nullptr)
+    if (pHead == nullptr)
     {
         pHead = pNew;
         pTail = pNew;
@@ -75,7 +76,7 @@ void Deque::insert(int &k, bool head)
         pHead = pNew;
         return;
     }
-    
+
     pNew->pPrevious = pTail;
     pTail->pNext = pNew;
     pTail = pNew;
@@ -114,7 +115,7 @@ void Deque::remove(bool head)
 void Deque::copyDeque(const Deque &rD)
 {
     Node *pCurrent = rD.pHead;
-    
+
     while (pCurrent != nullptr)
     {
         insert(pCurrent->data);
@@ -126,7 +127,7 @@ void Deque::freeDeque()
 {
     if (pHead == nullptr)
         return;
-    
+
     Node *pTemp;
     while (pHead->pNext != nullptr)
     {
@@ -135,5 +136,7 @@ void Deque::freeDeque()
         pHead = pTemp;
     }
         delete pHead;
+        pHead = nullptr;
+        pTail = nullptr;
     return;
 }

@@ -8,7 +8,7 @@ class Deque
         ~Deque();
         Deque(const Deque &rD);
         Deque & operator=(const Deque &rD);
-        
+
         /// @brief Peeks head of Deque
         /// @return pHead value
         int peekHead() const;
@@ -24,16 +24,16 @@ class Deque
 
         /// @brief Inserts value at head of Deque
         /// @param rK Value to be inserted
-        void insertHead(int &rK);
+        void insertHead(const int &rK);
 
         /// @brief Inserts value at tail of Deque
         /// @param rK Value to be inserted
-        void insertTail(int &rK);
+        void insertTail(const int &rK);
 
         /// @brief Inserts value at either head or tail of Deque
         /// @param rK Value to be inserted
         /// @param head Chooses whether to insert at head or tail
-        void insert(int &rK, bool head = true);
+        void insert(const int &rK, bool head = true);
 
         /// @brief Removes head of Deque
         void removeHead();
